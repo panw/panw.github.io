@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flex Layout</title>
+    <style>      
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        background-color: #8e44ad;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card {
+        display: flex;
+        overflow-x: auto;
+        background-color: #fff;
+        min-width: 100%;
+        min-height: 200px;
+      }
+      .card::-webkit-scrollbar {
+        display: none;
+      }
+      .card--content {
+        background-color: #e74c3c;
+        min-width: 200px;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="card">
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+      <div class="card--content"></div>
+    </section>
+  </body>
+</html>
