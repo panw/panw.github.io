@@ -509,7 +509,7 @@ function getAwesomePlaylist() {
   document.querySelector('video').src = playlist[0].src;
   // document.querySelector('a').focus();
   document.addEventListener('keydown', function(event) {
-    document.querySelector('#live-output').textContent(event.keyCode);
+    document.querySelector('#live-output').innerHTML = event.keyCode;
   });
 </script>
 
