@@ -97,7 +97,7 @@ media keys.</p>
   };
 </script>
 
-<h3>Live Output</h3>
+<h3 id='live-output'>Live Output</h3>
 <div id="output" class="output">
   <div id="content"></div>
   <div id="status"></div>
@@ -508,9 +508,9 @@ function getAwesomePlaylist() {
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
   // document.querySelector('a').focus();
-  // document.addEventListener('keydown', function(event) {
-  //   alert(event.keyCode);
-  // });
+  document.addEventListener('keydown', function(event) {
+    document.querySelector('#live-output').textContent(event.keyCode);
+  });
 </script>
 
     
