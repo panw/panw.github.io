@@ -23,6 +23,7 @@ limitations under the License.
     <meta name="description" content="Sample illustrating the use of Video / Media Session.">
     
     <title>Video / Media Session Sample</title>
+    <script src="https://unpkg.com/@gauntface/dpad-nav@3.0.1/build/helper/helper/dpad.js" async defer></script>
     <script>
       // Add a global error event listener early on in the page load, to help ensure that browsers
       // which don't support specific functionality still end up displaying a meaningful message.
@@ -49,12 +50,12 @@ limitations under the License.
     
     <h1>Video / Media Session Sample</h1>
     <p class="availability">
-      Available in <a tabIndex='-1' target="_blank" href="https://www.chromestatus.com/feature/5639924124483584">Chrome 57+</a> |
-      <a tabIndex='-1' target="_blank" href="https://github.com/googlechrome/samples/blob/gh-pages/media-session/video.html">View on GitHub</a> |
-      <a tabIndex='-1' href="index.html">Browse Samples</a>
+      Available in <a class="dpad-focusable" tabindex="0" target="_blank" href="https://www.chromestatus.com/feature/5639924124483584">Chrome 57+</a> |
+      <a class="dpad-focusable" tabIndex='-1' target="_blank" href="https://github.com/googlechrome/samples/blob/gh-pages/media-session/video.html">View on GitHub</a> |
+      <a class="dpad-focusable" tabIndex='-1' href="index.html">Browse Samples</a>
     </p>
     <h3>Background</h3>
-<p>The <a tabIndex='-1' href="https://developers.google.com/web/updates/2017/02/media-session">Media Session API</a> 
+<p>The <a class="dpad-focusable" tabIndex='-1' href="https://developers.google.com/web/updates/2017/02/media-session">Media Session API</a> 
 lets you customize media notifications by providing metadata information for
 the media your web app is playing. It also allows you to handle media related
 events such as seeking or track changing which may come from notifications or
@@ -66,7 +67,7 @@ media keys.</p>
   video { background: #1e2327; border-radius: 4px; width: 100%; } 
 </style>
 
-<video tabIndex='-1' preload="none" controls></video>
+<video class="dpad-focusable" tabIndex='-1' preload="none" controls></video>
 
 <script>
   var ChromeSamples = {
@@ -511,6 +512,7 @@ function getAwesomePlaylist() {
 //     alert(event.keyCode);
 //   });
 </script>
+
     
   </body>
 </html>
