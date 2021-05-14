@@ -1,6 +1,6 @@
 {
   "name": "pwa",
-  "start_url": "https://panw.github.io/pwa/"
+  "start_url": "/pwa/index.html"
   "display": "fullscreen",
   "icons": [
     {
