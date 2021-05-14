@@ -507,8 +507,11 @@ function getAwesomePlaylist() {
 <script>
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
-  // document.querySelector('a').focus();
   document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+      event = new KeyboardEvent('keydown', { code: 'Space', key: '' });
+      document.dispatchEvent(event);
+    }
     document.querySelector('#live-output').innerHTML = event.keyCode;
   });
 </script>
