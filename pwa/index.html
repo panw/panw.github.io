@@ -508,9 +508,9 @@ function getAwesomePlaylist() {
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
   document.querySelector('a').focus();
-//   document.addEventListener('keydown', function(event) {
-//     alert(event.keyCode);
-//   });
+  document.addEventListener('keydown', function(event) {
+    alert(event.keyCode);
+  });
 </script>
 
     
