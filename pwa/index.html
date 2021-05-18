@@ -508,6 +508,7 @@ function getAwesomePlaylist() {
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
   document.addEventListener('keydown', function(event) {
+    console.log('event', event);
     if (event.keyCode === 13) {
       document.dispatchEvent(new KeyboardEvent('keydown', { code: '32', key: 'Space' }));
     }
