@@ -23,7 +23,8 @@ limitations under the License.
     <meta name="description" content="Sample illustrating the use of Video / Media Session.">
     
     <title>Video / Media Session Sample</title>
-    <script src="https://unpkg.com/@gauntface/dpad-nav@3.0.1/build/helper/helper/dpad.js" async defer></script>
+    <!-- <script src="https://unpkg.com/@gauntface/dpad-nav@3.0.1/build/helper/helper/dpad.js" async defer></script> -->
+    <script src="dpad.js" />
     <script>
       // Add a global error event listener early on in the page load, to help ensure that browsers
       // which don't support specific functionality still end up displaying a meaningful message.
@@ -505,15 +506,16 @@ function getAwesomePlaylist() {
 
 
 <script>
+  var playing = false;
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
-  document.querySelector('video').addEventListener('keydown', function(event) {
-    console.log('event', event);
-    if (event.keyCode === 13) {
-      document.querySelector('video').dispatchEvent(new KeyboardEvent('keydown', { isTrusted: true, keyCode: 32, code: 'Space', key: ' ' }));
-    }
-    document.querySelector('#live-output').innerHTML = event.keyCode;
-  });
+  // document.querySelector('video').addEventListener('keydown', function(event) {
+  //   console.log('event', event);
+  //   if (event.keyCode === 13) {
+  //     document.querySelector('video').dispatchEvent(new KeyboardEvent('keydown', {key: ' ', code: 'Space', keyCode: 32, which: 32}));
+  //   }
+  //   document.querySelector('#live-output').innerHTML = event.keyCode;
+  // });
 </script>
 
     
