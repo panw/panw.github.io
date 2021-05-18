@@ -510,7 +510,7 @@ function getAwesomePlaylist() {
   document.addEventListener('keydown', function(event) {
     console.log('event', event);
     if (event.keyCode === 13) {
-      document.querySelector('video.d-padfocusable').dispatchEvent(new KeyboardEvent('keydown', { isTrusted: true, keyCode: 32, code: 'Space', key: ' ' }));
+      document.querySelector('video').dispatchEvent(new KeyboardEvent('keydown', { isTrusted: true, keyCode: 32, code: 'Space', key: ' ' }));
     }
     document.querySelector('#live-output').innerHTML = event.keyCode;
   });
