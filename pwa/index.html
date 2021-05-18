@@ -507,13 +507,13 @@ function getAwesomePlaylist() {
 <script>
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
-  // document.addEventListener('keydown', function(event) {
-  //   console.log('event', event);
-  //   if (event.keyCode === 13) {
-  //     document.querySelector('video').dispatchEvent(new KeyboardEvent('keydown', { isTrusted: true, keyCode: 32, code: 'Space', key: ' ' }));
-  //   }
-  //   document.querySelector('#live-output').innerHTML = event.keyCode;
-  // });
+  document.querySelector('video').addEventListener('keydown', function(event) {
+    console.log('event', event);
+    if (event.keyCode === 13) {
+      document.querySelector('video').dispatchEvent(new KeyboardEvent('keydown', { isTrusted: true, keyCode: 32, code: 'Space', key: ' ' }));
+    }
+    document.querySelector('#live-output').innerHTML = event.keyCode;
+  });
 </script>
 
     
