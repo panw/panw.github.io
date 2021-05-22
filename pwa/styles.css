@@ -45,7 +45,11 @@ header .profile .message {
 
 .item {
   flex: 0 0 auto;
-  width: 450;
+}
+
+.item img {
+  width: 300px;
+  height: auto;
 }
 
 .item:focus {
