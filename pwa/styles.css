@@ -1,14 +1,52 @@
-ul.images {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  width: 900px;
-  overflow-x: auto;
+body {
+  margin: 0 50px 0 50px;
+  background-color: black;
+  color: white;
 }
 
-ul.images li {
-  flex: 0 0 auto;
-  width: 150px;
-  height: 150px;
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
+
+header img {
+  width: 50px;
+}
+
+header .profile {
+  display: flex;
+  align-items: center;
+}
+
+header .profile .message {
+  margin-right: 5px;
+}
+
+.scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin: 5px 0 5px 0;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  flex: 0 0 auto;
+  width: 450;
+}
+
+.item:focus {
+  outline: none;
+  transform: scale(1.2);
+} 
+
+video { 
+  background: #1e2327; border-radius: 4px; width: 100%; 
+} 
