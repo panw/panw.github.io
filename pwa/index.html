@@ -18,67 +18,58 @@ limitations under the License.
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Sample illustrating the use of Video / Media Session.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Pan Video</title>
-    <script src="dpad.js" />
+    <title>Video / Media Session Sample</title>
     <script>
       // Add a global error event listener early on in the page load, to help ensure that browsers
       // which don't support specific functionality still end up displaying a meaningful message.
       window.addEventListener('error', function(error) {
-        if (Sample && Sample.setStatus) {
+        if (ChromeSamples && ChromeSamples.setStatus) {
           console.error(error);
-          Sample.setStatus(error.message + ' (Your browser may not support this feature.)');
+          ChromeSamples.setStatus(error.message + ' (Your browser may not support this feature.)');
           error.preventDefault();
         }
       });
     </script>
+    
+    
+    
+    
     <link rel="icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
-    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    
+    
   </head>
 
   <body>
-    <header>
-      <h1>Pan Video</h1>
-      <div class='profile'>
-        <span class='message'>Welcome back, Pan!</span>
-        <img src="images/smile.png" alt="" />
-      </div>
-    </header>
     
-    <section>
-      <h2>Recommended</h2>
-      <div class='scroll'>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/a_new_hope_thumbnail.jpeg' /></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/ad_astra_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/alien_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/apollo_11_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/arrival_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/bladerunner_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/et_thumbnail.jpeg'/></a>
-      </div>
-    </section>
-    <section>
-      <h2>Trending</h2>
-      <div class='scroll'>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/gravity_thumbnail.png'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/hitchhikers_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/interstellar_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/return_jedi_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/runner_2049_thumbnail.jpeg'/></a>
-        <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/spaceballs_thumbnail.jpeg'/></a>
-      </div>
-    </section>
-    <section>
-      <h2>Featured</h2>
-      <video class="dpad-focusable" tabIndex='0' preload="none" controls></video>
-    </section>
-    <script>
+    <h1>Video / Media Session Sample</h1>
+    <p class="availability">
+      Available in <a target="_blank" href="https://www.chromestatus.com/feature/5639924124483584">Chrome 57+</a> |
+      <a target="_blank" href="https://github.com/googlechrome/samples/blob/gh-pages/media-session/video.html">View on GitHub</a> |
+      <a  href="index.html">Browse Samples</a>
+    </p>
+    <h3>Background</h3>
+<p>The <a href="https://developers.google.com/web/updates/2017/02/media-session">Media Session API</a> 
+lets you customize media notifications by providing metadata information for
+the media your web app is playing. It also allows you to handle media related
+events such as seeking or track changing which may come from notifications or
+media keys.</p>
 
-  var Sample = {
+<p>Credits: Media files are © copyright Blender Foundation | <a href="http://www.blender.org">www.blender.org </a>.</p>
+
+<style>
+  video { background: #1e2327; border-radius: 4px; width: 100%; } 
+</style>
+
+<video preload="none" controls></video>
+
+<script>
+  var ChromeSamples = {
     log: function() {
       var line = Array.prototype.slice.call(arguments).map(function(argument) {
         return typeof argument === 'string' ? argument : JSON.stringify(argument);
@@ -104,12 +95,21 @@ limitations under the License.
     }
   };
 </script>
+
+<h3>Live Output</h3>
+<div id="output" class="output">
+  <div id="content"></div>
+  <div id="status"></div>
+  <pre id="log"></pre>
+</div>
+
+
 <script>
   if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
     // Let's log a warning if the sample is not supposed to execute on this
     // version of Chrome.
     if (57 > parseInt(RegExp.$1)) {
-      Sample.setStatus('Warning! Keep in mind this sample has been tested with Chrome ' + 57 + '.');
+      ChromeSamples.setStatus('Warning! Keep in mind this sample has been tested with Chrome ' + 57 + '.');
     }
   }
 </script>
@@ -118,7 +118,7 @@ limitations under the License.
 
 <script>
   if (!('mediaSession' in navigator)) {
-    Sample.setStatus('The Media Session API is not yet available. Try Chrome for Android.');
+    ChromeSamples.setStatus('The Media Session API is not yet available. Try Chrome for Android.');
   }
 
   // This prevents unnecessary errors when Media Session API is not available.
@@ -126,7 +126,7 @@ limitations under the License.
   navigator.mediaSession.setActionHandler = navigator.mediaSession.setActionHandler || function() {};
   window.MediaMetadata = window.MediaMetadata || function() {};
 
-  log = Sample.log;
+  log = ChromeSamples.log;
 </script>
 
 
@@ -312,13 +312,212 @@ function getAwesomePlaylist() {
     }];
 }
 </script>
+    
+  
+
+  
+    <h3>JavaScript Snippet</h3>
+  
+
+  
+    <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">video</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">video</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">playlist</span> <span class="o">=</span> <span class="nx">getAwesomePlaylist</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">onPlayButtonClick</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">playVideo</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">playVideo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">playlist</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">src</span><span class="p">;</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">_</span> <span class="o">=&gt;</span> <span class="nx">updateMetadata</span><span class="p">())</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">updateMetadata</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">track</span> <span class="o">=</span> <span class="nx">playlist</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Playing </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">track</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> track...</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">metadata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaMetadata</span><span class="p">({</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">track</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+    <span class="na">artist</span><span class="p">:</span> <span class="nx">track</span><span class="p">.</span><span class="nx">artist</span><span class="p">,</span>
+    <span class="na">artwork</span><span class="p">:</span> <span class="nx">track</span><span class="p">.</span><span class="nx">artwork</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Media is loaded, set the duration.</span>
+  <span class="nx">updatePositionState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/* Position state (supported since Chrome 81) */</span>
+
+<span class="kd">function</span> <span class="nx">updatePositionState</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="dl">'</span><span class="s1">setPositionState</span><span class="dl">'</span> <span class="k">in</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Updating position state...</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setPositionState</span><span class="p">({</span>
+      <span class="na">duration</span><span class="p">:</span> <span class="nx">video</span><span class="p">.</span><span class="nx">duration</span><span class="p">,</span>
+      <span class="na">playbackRate</span><span class="p">:</span> <span class="nx">video</span><span class="p">.</span><span class="nx">playbackRate</span><span class="p">,</span>
+      <span class="na">position</span><span class="p">:</span> <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Previous Track &amp; Next Track */</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">previoustrack</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Previous Track" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">index</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">playlist</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">%</span> <span class="nx">playlist</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="nx">playVideo</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">nexttrack</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Next Track" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">index</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nx">playlist</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="nx">playVideo</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">video</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">ended</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Play automatically the next track when video ends.</span>
+  <span class="nx">index</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">playlist</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">%</span> <span class="nx">playlist</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="nx">playVideo</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/* Seek Backward &amp; Seek Forward */</span>
+
+<span class="kd">let</span> <span class="nx">defaultSkipTime</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="cm">/* Time to skip in seconds by default */</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">seekbackward</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Seek Backward" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">skipTime</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">seekOffset</span> <span class="o">||</span> <span class="nx">defaultSkipTime</span><span class="p">;</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">-</span> <span class="nx">skipTime</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="nx">updatePositionState</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">seekforward</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Seek Forward" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">skipTime</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">seekOffset</span> <span class="o">||</span> <span class="nx">defaultSkipTime</span><span class="p">;</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="nx">skipTime</span><span class="p">,</span> <span class="nx">video</span><span class="p">.</span><span class="nx">duration</span><span class="p">);</span>
+  <span class="nx">updatePositionState</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/* Play &amp; Pause */</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">play</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Play" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">await</span> <span class="nx">video</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">playbackState</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">playing</span><span class="dl">"</span><span class="p">;</span>
+  <span class="c1">// Do something more than just playing video...</span>
+<span class="p">});</span>
+
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">pause</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Pause" icon.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">playbackState</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">paused</span><span class="dl">"</span><span class="p">;</span>
+  <span class="c1">// Do something more than just pausing video...</span>
+<span class="p">});</span>
+
+<span class="cm">/* Stop (supported since Chrome 77) */</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">stop</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Stop" icon.</span><span class="dl">'</span><span class="p">);</span>
+    <span class="c1">// TODO: Clear UI playback...</span>
+  <span class="p">});</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Warning! The "stop" media session action is not supported.</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Seek To (supported since Chrome 78) */</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">mediaSession</span><span class="p">.</span><span class="nx">setActionHandler</span><span class="p">(</span><span class="dl">'</span><span class="s1">seekto</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt; User clicked "Seek To" icon.</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">fastSeek</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="dl">'</span><span class="s1">fastSeek</span><span class="dl">'</span> <span class="k">in</span> <span class="nx">video</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">video</span><span class="p">.</span><span class="nx">fastSeek</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">seekTime</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">seekTime</span><span class="p">;</span>
+    <span class="nx">updatePositionState</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Warning! The "seekto" media session action is not supported.</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Utils */</span>
+
+<span class="kd">function</span> <span class="nx">getAwesomePlaylist</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">BASE_URL</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://storage.googleapis.com/media-session/</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="p">[{</span>
+      <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/trailer.mp4</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">"Sintel" Trailer, Durian Open Movie Project</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artist</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Blender Foundation</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artwork</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-96.png</span><span class="dl">'</span><span class="p">,</span>  <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">96x96</span><span class="dl">'</span><span class="p">,</span>   <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-128.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">128x128</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-192.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">192x192</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-256.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">256x256</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-384.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">384x384</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">sintel/artwork-512.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">512x512</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">]</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/trailer.mov</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">"Big Buck Bunny" Trailer, Peach Open Movie Project</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artist</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Blender Foundation</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artwork</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-96.png</span><span class="dl">'</span><span class="p">,</span>  <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">96x96</span><span class="dl">'</span><span class="p">,</span>   <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-128.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">128x128</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-192.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">192x192</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-256.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">256x256</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-384.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">384x384</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">big-buck-bunny/artwork-512.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">512x512</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">]</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/teaser.mp4</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">"Elephants Dream" Teaser, Orange Open Movie Project</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artist</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Blender Foundation</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artwork</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-96.png</span><span class="dl">'</span><span class="p">,</span>  <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">96x96</span><span class="dl">'</span><span class="p">,</span>   <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-128.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">128x128</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-192.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">192x192</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-256.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">256x256</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-384.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">384x384</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">elephants-dream/artwork-512.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">512x512</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">]</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/short.mp4</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">"Caminandes 2: Gran Dillama" - Blender Animated Short</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artist</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Blender Foundation</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">artwork</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-96.png</span><span class="dl">'</span><span class="p">,</span>  <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">96x96</span><span class="dl">'</span><span class="p">,</span>   <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-128.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">128x128</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-192.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">192x192</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-256.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">256x256</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-384.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">384x384</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="nx">BASE_URL</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">caminandes/artwork-512.png</span><span class="dl">'</span><span class="p">,</span> <span class="na">sizes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">512x512</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image/png</span><span class="dl">'</span> <span class="p">},</span>
+      <span class="p">]</span>
+    <span class="p">}];</span>
+<span class="p">}</span></code></pre></figure>
+  
+
+
 
 <script>
-  var playing = false;
   document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   document.querySelector('video').src = playlist[0].src;
 </script>
 
     
+    <script>
+      /* jshint ignore:start */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-53563471-1', 'auto');
+      ga('send', 'pageview');
+      /* jshint ignore:end */
+    </script>
   </body>
 </html>
