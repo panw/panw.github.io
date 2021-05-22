@@ -51,6 +51,7 @@ header .profile .message {
 .item:focus {
   outline: none;
   transform: scale(1.2);
+  background-color: #146eb4;
 } 
 
 video { 

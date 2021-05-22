@@ -76,7 +76,34 @@ limitations under the License.
       <h2>Featured</h2>
       <video class="dpad-focusable" tabIndex='0' preload="none" controls></video>
     </section>
+    <script>
 
+  var Sample = {
+    log: function() {
+      var line = Array.prototype.slice.call(arguments).map(function(argument) {
+        return typeof argument === 'string' ? argument : JSON.stringify(argument);
+      }).join(' ');
+
+      document.querySelector('#log').textContent += line + '\n';
+    },
+
+    clearLog: function() {
+      document.querySelector('#log').textContent = '';
+    },
+
+    setStatus: function(status) {
+      document.querySelector('#status').textContent = status;
+    },
+
+    setContent: function(newContent) {
+      var content = document.querySelector('#content');
+      while(content.hasChildNodes()) {
+        content.removeChild(content.lastChild);
+      }
+      content.appendChild(newContent);
+    }
+  };
+</script>
 <script>
   if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
     // Let's log a warning if the sample is not supposed to execute on this
