@@ -1,5 +1,5 @@
 [{
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target" : { "namespace": "android_app", "package_name": "com.panw.panvideo",
-               "sha256_cert_fingerprints": ["B2:AB:B5:B8:3A:F7:AB:16:35:28:72:C6:F7:46:4A:C7:8C:7E:FC:A9:C6:8A:8A:F2:E5:A5:6E:C1:89:BF:44:33"] }
+               "sha256_cert_fingerprints": ["9A:00:4C:B7:A4:2D:F5:96:08:FD:76:09:17:32:BC:49:64:82:3C:07:91:74:EA:10:6E:87:BF:D1:62:D0:F8:6C"] }
 }]
