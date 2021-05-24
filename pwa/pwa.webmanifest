@@ -1,6 +1,6 @@
 {
   "name": "pwa",
-  "start_url": "/pwa/index.html",
+  "start_url": "/pwa/",
   "display": "fullscreen",
   "icons": [
     {
