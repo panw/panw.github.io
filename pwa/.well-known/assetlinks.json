@@ -3,6 +3,6 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.panw.panvideo",
-    "sha256_cert_fingerprints": ["52:4D:01:78:CA:5E:63:BF:A9:C4:9F:C4:63:D9:78:50:5B:C6:F7:FD:BD:6C:8C:88:60:27:30:B1:FA:04:89:07"]
+    "sha256_cert_fingerprints": ["B2:AB:B5:B8:3A:F7:AB:16:35:28:72:C6:F7:46:4A:C7:8C:7E:FC:A9:C6:8A:8A:F2:E5:A5:6E:C1:89:BF:44:33"]
   }
 }]
