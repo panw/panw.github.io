@@ -36,7 +36,9 @@ header .profile .message {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  margin: 5px 0 5px 0;
+  /* margin: 15px 0 15px 0; */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .scroll::-webkit-scrollbar {
@@ -53,11 +55,14 @@ header .profile .message {
 }
 
 .item:focus {
-  outline: none;
   transform: scale(1.2);
-  background-color: #146eb4;
+  transition: all 0.3s ease;
 } 
 
 video { 
   background: #1e2327; border-radius: 4px; width: 100%; 
+}
+
+*:focus {
+  color: #146eb4;
 }
