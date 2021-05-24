@@ -1,28 +1,15 @@
 <!doctype html>
-<!--
-Copyright 2021 Google Inc. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Sample illustrating the use of Video / Media Session.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Video / Media Session Sample</title>
+  <title>Pan Video</title>
+  <script src="dpad.js"></script>
   <script>
     // Add a global error event listener early on in the page load, to help ensure that browsers
     // which don't support specific functionality still end up displaying a meaningful message.
@@ -34,46 +21,46 @@ limitations under the License.
       }
     });
   </script>
-
-
-
-
-  <link rel="icon" href="../images/favicon.ico">
-
-  <link rel="stylesheet" href="../styles/main.css">
-
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <header>
+    <h1 class='dpad-focusable' tabindex='0'>Pan Video</h1>
+    <div class='profile'>
+      <span class='message'>Welcome back, Pan!</span>
+      <img src="images/smile.png" alt="" />
+    </div>
+  </header>
 
-  <h1>Video / Media Session Sample</h1>
-  <p class="availability">
-    Available in <a target="_blank" href="https://www.chromestatus.com/feature/5639924124483584">Chrome 57+</a> |
-    <a target="_blank" href="https://github.com/googlechrome/samples/blob/gh-pages/media-session/video.html">View on
-      GitHub</a> |
-    <a href="index.html">Browse Samples</a>
-  </p>
-  <h3>Background</h3>
-  <p>The <a href="https://developers.google.com/web/updates/2017/02/media-session">Media Session API</a>
-    lets you customize media notifications by providing metadata information for
-    the media your web app is playing. It also allows you to handle media related
-    events such as seeking or track changing which may come from notifications or
-    media keys.</p>
-
-  <p>Credits: Media files are © copyright Blender Foundation | <a href="http://www.blender.org">www.blender.org </a>.
-  </p>
-
-  <style>
-    video {
-      background: #1e2327;
-      border-radius: 4px;
-      width: 100%;
-    }
-  </style>
-
-  <video preload="none" controls></video>
-
+  <section>
+    <h2>Recommended</h2>
+    <div class='scroll'>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/a_new_hope_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/ad_astra_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/alien_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/apollo_11_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/arrival_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/bladerunner_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/et_thumbnail.jpeg' /></a>
+    </div>
+  </section>
+  <section>
+    <h2>Trending</h2>
+    <div class='scroll'>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/gravity_thumbnail.png' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/hitchhikers_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/interstellar_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/return_jedi_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/runner_2049_thumbnail.jpeg' /></a>
+      <a class='item dpad-focusable' tabindex='0' href='#'><img src='images/spaceballs_thumbnail.jpeg' /></a>
+    </div>
+  </section>
+  <section>
+    <h2>Featured</h2>
+    <video class="dpad-focusable" tabIndex='0' preload="none" controls></video>
+  </section>
   <script>
     var ChromeSamples = {
       log: function () {
@@ -101,14 +88,12 @@ limitations under the License.
       }
     };
   </script>
-
   <h3>Live Output</h3>
   <div id="output" class="output">
     <div id="content"></div>
     <div id="status"></div>
     <pre id="log"></pre>
   </div>
-
 
   <script>
     if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)) {
@@ -119,8 +104,6 @@ limitations under the License.
       }
     }
   </script>
-
-
 
   <script>
     if (!('mediaSession' in navigator)) {
@@ -137,8 +120,8 @@ limitations under the License.
 
 
 
-
-  <script>let video = document.querySelector('video');
+  <script>
+    let video = document.querySelector('video');
 
     let playlist = getAwesomePlaylist();
     let index = 0;
@@ -317,12 +300,15 @@ limitations under the License.
         ]
       }];
     }
-  
+  </script>
+
+  <script>
+    var playing = false;
     document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
     document.querySelector('video').src = playlist[0].src;
   </script>
 
-  <script src='dpad.js'></script>
+
 </body>
 
 </html>
