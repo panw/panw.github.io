@@ -352,15 +352,14 @@
 
   <script>
     var playing = false;
-    document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
     document.querySelector('video').src = playlist[0].src;
 
     var fullscreenEnabled = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
     document.querySelector('.content').addEventListener('click', (event) => {
-      event.preventDefault();
       if (document.fullscreenEnabled) {
         document.querySelector('video').style.display = "block";
         document.querySelector('video').requestFullscreen();
+        document.querySelector('video').focus();
         onPlayButtonClick();
       } else {
         console.log('Your browser cannot use fullscreen right now');
@@ -377,6 +376,7 @@
         }
       }, false)
     );
+    document.querySelector('video').addEventListener('play', onPlayButtonClick, { once: true });
   </script>
 </body>
 
