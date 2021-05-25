@@ -356,7 +356,7 @@
     document.querySelector('.content').addEventListener('click', (event) => {
       event.preventDefault();
       if (document.fullscreenEnabled) {
-        document.querySelector('video').style.visibility = "visible";
+        document.querySelector('video').style.display = "block";
         document.querySelector('video').requestFullscreen();
         onPlayButtonClick();
       } else {
@@ -370,7 +370,7 @@
         if (!document.fullscreenElement) {
           video.pause();
           navigator.mediaSession.playbackState = "paused";
-          document.querySelector('video').style.visibility = "hidden";
+          document.querySelector('video').style.display = "none";
         }
       }, false)
     );
