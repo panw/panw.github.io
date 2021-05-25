@@ -63,5 +63,6 @@ video {
 }
 
 *:focus {
-  color: #146eb4;
+  /* outline: */
+  border: #146eb4;
 }
