@@ -48,7 +48,7 @@ header .profile .message {
 }
 
 .item img {
-  width: 300px;
+  width: 200px;
   height: auto;
 }
 
@@ -58,6 +58,7 @@ header .profile .message {
 } 
 
 video { 
+  visibility: hidden;
   background: #1e2327; border-radius: 4px; width: 100%; 
 }
 
